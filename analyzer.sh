@@ -22,12 +22,18 @@ case $1 in
 		awk '{ print $1 }' $2 | sort | uniq -c | sort -nr | head -n 10
 		;;
 
-	# switch -i shows count of top 10 user agent
+	# switch -ag shows count of top 10 user agent
 	# usage: ./analyzer.sh -ag [log file]
 	# example: ./analyzer.sh -ag apache_logs
 	-ag )
 		awk -F\" '{ print $6 }' $2 | sort | uniq -c | sort -nr | head -n 10
 		;;
 
-	
+	# switch -os shows count of top 10 os
+	# usage: ./analyzer.sh -os [log file]
+	# example: ./analyzer.sh -os apache_logs
+	-os )
+		awk '{print $13}' $2 | sort | uniq -c | sort -nr | head -n 10
+		;;
+
 esac
