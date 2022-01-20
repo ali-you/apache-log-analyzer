@@ -14,5 +14,11 @@ case $1 in
 		done
 		echo count of $3: $count
 		;;
-		
+
+	# switch -i shows count of top 10 ip
+	# usage: ./analyzer.sh -i [log file]
+	# example: ./analyzer.sh -i apache_logs
+	-i )
+		awk '{ print $1 }' $2 | sort | uniq -c | sort -nr | head -n 10
+		;;
 esac
