@@ -36,4 +36,11 @@ case $1 in
 		awk '{print $13}' $2 | sort | uniq -c | sort -nr | head -n 10
 		;;
 
+	# switch -ur shows count of top 10 urls
+	# usage: ./analyzer.sh -ur [log file]
+	# example: ./analyzer.sh -ur apache_logs
+	-ur )
+		awk -F\" '{print $4}' $2 | sort | uniq -c | sort -nr | head -n 10
+		;;
+
 esac
